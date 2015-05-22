@@ -18,13 +18,15 @@ public class MainActivity extends ActionBarActivity {
     private SoundPool mSoundPool;
     private int mSoundId;
 
+    private static Button btnWin = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // Obtaining the font
-        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/awesome.ttf");
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/BTTF.ttf");
 
         TextView txtTitle = (TextView)findViewById(R.id.txtTitle);
         txtTitle.setTypeface(font);
@@ -35,23 +37,10 @@ public class MainActivity extends ActionBarActivity {
         final TextView digit4 = (TextView)findViewById(R.id.digit4);
         final TextView digit5 = (TextView)findViewById(R.id.digit5);
 
-        final Button btnWin = (Button)findViewById(R.id.btnWin);
+        btnWin = (Button)findViewById(R.id.btnWin);
         btnWin.setTypeface(font);
         btnWin.setEnabled(false);
-
-        // creating the sound pool
-        mSoundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-        // loading the sound
-        mSoundId = mSoundPool.load(this, R.raw.cash, 1);
-
-        mSoundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
-            @Override
-            public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                if (status == 0)
-                    btnWin.setEnabled(true);
-            }
-        });
-
+        
         btnWin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +101,28 @@ public class MainActivity extends ActionBarActivity {
             mSoundPool = null;
         }
         super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        if (null == mSoundPool) {
+
+            // creating the sound pool
+            mSoundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+            // loading the sound
+            mSoundId = mSoundPool.load(this, R.raw.cash, 1);
+
+            mSoundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                @Override
+                public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                    if (status == 0)
+                        btnWin.setEnabled(true);
+                }
+            });
+
+        }
+
+        super.onResume();
     }
 
     private void setDigitText(TextView digit, int number) {
