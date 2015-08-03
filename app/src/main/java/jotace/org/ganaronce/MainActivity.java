@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
         AdBuddiz.cacheAds(this);
 
         // Obtaining the font
-        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/BTTF.ttf");
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/SkaterGirlsRock.ttf");
 
         TextView txtTitle = (TextView)findViewById(R.id.txtTitle);
         txtTitle.setTypeface(font);
