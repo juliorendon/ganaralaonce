@@ -8,8 +8,8 @@ android {
         applicationId "jotace.org.ganaronce"
         minSdkVersion 9
         targetSdkVersion 22
-        versionCode 4
-        versionName "4"
+        versionCode 5
+        versionName "5"
     }
     buildTypes {
         release {
