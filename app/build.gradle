@@ -8,8 +8,8 @@ android {
         applicationId "jotace.org.ganaronce"
         minSdkVersion 9
         targetSdkVersion 22
-        versionCode 5
-        versionName "5"
+        versionCode 6
+        versionName "6"
     }
     buildTypes {
         release {
@@ -22,5 +22,5 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.0.0'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.google.android.gms:play-services-ads:7.8.0'
 }

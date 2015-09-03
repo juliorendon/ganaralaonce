@@ -11,9 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.purplebrain.adbuddiz.sdk.AdBuddiz;
-
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -28,8 +27,10 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AdBuddiz.setPublisherKey("7721ad1d-de02-4d23-bcbf-7f154e19b814");
-        AdBuddiz.cacheAds(this);
+        // Loading Google AdMob Ads
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         // Obtaining the font
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/SkaterGirlsRock.ttf");
@@ -71,15 +72,6 @@ public class MainActivity extends ActionBarActivity {
 
                 // play the sound
                 mSoundPool.play(mSoundId, 1.0f, 1.0f, 1, 0, 1.0f);
-
-                // Display the add after 5 seconds
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        // display ad
-                        AdBuddiz.showAd(MainActivity.this);
-                    }
-                }, 5000);
 
             }
         });
